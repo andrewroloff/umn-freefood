@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+const API_URL = `${import.meta.env.VITE_API_URL}/events`;
 
 export default function App() {
     const [events, setEvents] = useState([]);
@@ -14,7 +15,7 @@ export default function App() {
 
     const loadEvents = async () => {
         try {
-            const res = await fetch('http://localhost:3000/events');
+            const res = await fetch(API_URL);
             const data = await res.json();
             setEvents(data);
             setLoading(false);
