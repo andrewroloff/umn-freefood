@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-const API_URL = `${import.meta.env.VITE_API_URL}/events`;
 
 export default function App() {
     const [events, setEvents] = useState([]);
@@ -15,7 +14,7 @@ export default function App() {
 
     const loadEvents = async () => {
         try {
-            const res = await fetch(API_URL);
+            const res = await fetch('/events');
             const data = await res.json();
             setEvents(data);
             setLoading(false);
@@ -35,7 +34,7 @@ export default function App() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch('https://umn-freefood.onrender.com/', {
+            const res = await fetch('https://umn-freefood.onrender.com/events', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(form)
