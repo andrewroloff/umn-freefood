@@ -34,7 +34,7 @@ mongoose.connect(process.env.MONGO_URI)
 
 // CRON JOB - dev: run every minute to make testing faster.
 // Change to "0 * * * *" for hourly in production.
-cron.schedule("* * * * *", async () => {
+cron.schedule("0 * * * *", async () => {
     const now = new Date();
     const res = await Event.deleteMany({ datetime: { $lt: now } });
     if (res.deletedCount) console.log(`Deleted ${res.deletedCount} expired events`);
